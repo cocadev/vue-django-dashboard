@@ -5,3 +5,4 @@ djangorestframework>=3.9.1
 PyJWT==1.4.2
 six==1.10.0
 Pillow
+django-filter==2.2.0

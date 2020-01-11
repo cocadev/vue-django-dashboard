@@ -3,8 +3,9 @@ from conduit.apps.core.models import TimestampedModel
 
 
 class Country(TimestampedModel):
-    country = models.CharField(max_length=255)
+    country = models.CharField(max_length=50)
     slug = models.SlugField(db_index=True, unique=True)
+    code = models.IntegerField()
     flag = models.FileField(upload_to='static/images/%Y/%m/%d/', null=True, blank=True)
 
     def __str__(self):

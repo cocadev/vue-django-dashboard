@@ -6,6 +6,7 @@ from .serializers import CountrySerializer, CurrencySerializer
 # from django.http.response import JsonResponse
 # from rest_framework.decorators import api_view
 # from .forms import CountryChangeForm
+from django_filters import rest_framework as filters
 
 
 class CurrencyViewSet(viewsets.ModelViewSet):
@@ -16,6 +17,8 @@ class CurrencyViewSet(viewsets.ModelViewSet):
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_fields = ('country', 'slug')
 
 
 # @api_view(['GET'])
