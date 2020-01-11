@@ -3,9 +3,10 @@ from .models import Country, Currency
 
 
 class CountrySerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Country
-        fields = ('id', 'country', 'slug', 'flag')
+        fields = ('id', 'country', 'slug', 'flag', 'code')
 
     # def to_representation(self, obj):
     #     return obj.country
