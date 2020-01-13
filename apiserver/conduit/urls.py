@@ -9,6 +9,7 @@ urlpatterns = [
     path('api/', include('conduit.apps.authentication.urls')),
     path('api/', include('conduit.apps.profiles.urls')),
     path('api/', include('conduit.apps.eugene.urls')),
+    path('api/', include('conduit.apps.ecommerce.urls')),
 
 ]
 static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'conduit.apps.core',
     'conduit.apps.profiles',
     'conduit.apps.eugene',
+    'conduit.apps.ecommerce',
 
 ]
 
