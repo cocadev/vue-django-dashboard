@@ -19,8 +19,8 @@ class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
-    filter_fields = ('country', 'slug')
-    ordering = ('-code',)
+    filter_fields = ('name', 'phoneCode', 'alpha2code')
+    ordering = ('-name',)
 
     def get_serializer(self, *args, **kwargs):
         if "data" in kwargs:

@@ -3,13 +3,15 @@ from conduit.apps.core.models import TimestampedModel
 
 
 class Country(TimestampedModel):
-    country = models.CharField(max_length=50)
-    slug = models.SlugField(db_index=True, unique=True)
-    code = models.IntegerField()
+    name = models.CharField(max_length=50)
+    # slug = models.SlugField(db_index=True, unique=True)
+    phoneCode = models.CharField(max_length=5, )
+    alpha2code = models.CharField(max_length=5, null=False, blank=False)
+    alpha3code = models.CharField(max_length=5, )
     flag = models.FileField(upload_to='static/images/%Y/%m/%d/', null=True, blank=True)
 
     def __str__(self):
-        return self.country
+        return self.name
 
 
 class Currency(TimestampedModel):
