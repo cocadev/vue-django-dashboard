@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from rest_framework import status, viewsets
-from .models import Country, Currency
-from .serializers import CountrySerializer, CurrencySerializer
+from .models import Country, Currency, Color
+from .serializers import CountrySerializer, CurrencySerializer, ColorSerializer
 # from rest_framework.parsers import JSONParser
 # from django.http.response import JsonResponse
 # from rest_framework.decorators import api_view
@@ -13,6 +13,13 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 class CurrencyViewSet(viewsets.ModelViewSet):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
+
+    def get_serializer(self, *args, **kwargs):
+        if "data" in kwargs:
+            data = kwargs["data"]
+            if isinstance(data, list):
+                kwargs["many"] = True
+        return super(CurrencyViewSet, self).get_serializer(*args, **kwargs)
 
 
 class CountryViewSet(viewsets.ModelViewSet):
@@ -28,6 +35,18 @@ class CountryViewSet(viewsets.ModelViewSet):
             if isinstance(data, list):
                 kwargs["many"] = True
         return super(CountryViewSet, self).get_serializer(*args, **kwargs)
+
+
+class ColorViewSet(viewsets.ModelViewSet):
+    queryset = Color.objects.all()
+    serializer_class = ColorSerializer
+
+    def get_serializer(self, *args, **kwargs):
+        if "data" in kwargs:
+            data = kwargs["data"]
+            if isinstance(data, list):
+                kwargs["many"] = True
+        return super(ColorViewSet, self).get_serializer(*args, **kwargs)
 
 
 # @api_view(['GET'])

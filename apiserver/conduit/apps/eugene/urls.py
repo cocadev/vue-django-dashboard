@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CurrencyViewSet, CountryViewSet
+from .views import CurrencyViewSet, CountryViewSet, ColorViewSet
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -11,6 +11,7 @@ from django.conf import settings
 router = DefaultRouter()
 router.register(r'currencies', CurrencyViewSet)
 router.register(r'countries', CountryViewSet)
+router.register(r'colors', ColorViewSet)
 
 urlpatterns = [
 
