@@ -11,6 +11,19 @@ from .renderers import ArticleJSONRenderer, CommentJSONRenderer
 from .serializers import ArticleSerializer, CommentSerializer, TagSerializer
 
 
+class TagViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+
+    def get_serializer(self, *args, **kwargs):
+        if "data" in kwargs:
+            data = kwargs["data"]
+            if isinstance(data, list):
+                kwargs["many"] = True
+        return super(TagViewSet, self).get_serializer(*args, **kwargs)
+
+
 class ArticleViewSet(mixins.CreateModelMixin, 
                      mixins.ListModelMixin,
                      mixins.RetrieveModelMixin,
@@ -201,21 +214,6 @@ class ArticlesFavoriteAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class TagListAPIView(generics.ListAPIView):
-    queryset = Tag.objects.all()
-    pagination_class = None
-    permission_classes = (AllowAny,)
-    serializer_class = TagSerializer
-
-    def list(self, request):
-        serializer_data = self.get_queryset()
-        serializer = self.serializer_class(serializer_data, many=True)
-
-        return Response({
-            'tags': serializer.data
-        }, status=status.HTTP_200_OK)
-
-
 class ArticlesFeedAPIView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     queryset = Article.objects.all()
@@ -237,3 +235,4 @@ class ArticlesFeedAPIView(generics.ListAPIView):
         )
 
         return self.get_paginated_response(serializer.data)
+

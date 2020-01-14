@@ -108,7 +108,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ('tag',)
+        fields = ('tag', 'slug')
 
     def to_representation(self, obj):
         return obj.tag

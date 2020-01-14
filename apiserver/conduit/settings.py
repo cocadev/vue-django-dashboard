@@ -162,6 +162,7 @@ REST_FRAMEWORK = {
         'conduit.apps.authentication.backends.JWTAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5,
+    'PAGE_SIZE': 20,
 }
 SECURE_SSL_REDIRECT=False
+CORS_ORIGIN_ALLOW_ALL=True

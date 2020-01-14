@@ -45,7 +45,7 @@ class Client(models.Model):
 
 
 class Address(models.Model):
-    client = models.ForeignKey(to=Client, related_name="addresses", null=True, blank=True, on_delete=models.CASCADE)
+    client = models.ForeignKey(to=Client, related_name="addresses", on_delete=models.CASCADE)
     business_address_street = models.CharField(max_length=254, verbose_name='Street', blank=True)
     business_address_house_number = models.CharField(max_length=5, verbose_name='House number', blank=True)
     business_address_zipecode = models.CharField(max_length=5, verbose_name='Zip code', blank=True)

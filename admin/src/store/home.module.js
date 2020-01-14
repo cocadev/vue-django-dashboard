@@ -43,7 +43,7 @@ const actions = {
   [FETCH_TAGS]({ commit }) {
     return TagsService.get()
       .then(({ data }) => {
-        commit(SET_TAGS, data.tags);
+        commit(SET_TAGS, data.results);
       })
       .catch(error => {
         throw new Error(error);
