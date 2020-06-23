@@ -1,1 +1,1 @@
-# vue-django-dashboard
+# vue.js frontend and python django backend admin dashboard
